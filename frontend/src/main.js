@@ -11,8 +11,8 @@ Vue.use(msal, {
   auth: {
     clientId: "14dfc30f-dc84-420f-8ac8-a416505867ef",
     tenantId: "33d8cf3c-2f14-48c0-9ad6-5d2825533673",
-    //redirectUri: "http://localhost:8081/login/oauth2/code/azure",
-    redirectUri: "https://vps101.ap.be/login/oauth2/code/azure",
+    redirectUri: "http://localhost:8081/login/oauth2/code/azure",
+    // redirectUri: "https://vps101.ap.be/login/oauth2/code/azure",
     scopes: ["profile", "openid", "user.read"],
   },
   request: {

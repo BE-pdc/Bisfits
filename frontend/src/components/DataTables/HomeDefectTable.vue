@@ -158,7 +158,7 @@ export default {
           value: "name",
           sortable: false,
           filter: this.nameFilter,
-          align: "center"
+          align: "center",
         },
         {
           text: "Category",
@@ -287,7 +287,7 @@ export default {
       .then((response) => {
         this.campuses = response.data;
       })
-      .catch(error => {
+      .catch((error) => {
         this.errors.push(error);
       });
     api

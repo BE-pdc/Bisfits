@@ -15,7 +15,13 @@
       <template v-slot:top>
         <transition name="slide-fade">
           <div class="filters" v-if="shFilters">
-            <v-layout justify-space-around align-center class="task-filters" row wrap>
+            <v-layout
+              justify-space-around
+              align-center
+              class="task-filters"
+              row
+              wrap
+            >
               <v-flex xs10 sm4 md2>
                 <v-select
                   clearable
@@ -49,7 +55,12 @@
                 ></v-select>
               </v-flex>
               <v-flex xs10 sm4 md2>
-                <v-select clearable :items="statuses" v-model="taskStatusFilterVal" label="Status"></v-select>
+                <v-select
+                  clearable
+                  :items="statuses"
+                  v-model="taskStatusFilterVal"
+                  label="Status"
+                ></v-select>
               </v-flex>
             </v-layout>
             <div class="btn-reset-wrapper">
@@ -59,7 +70,8 @@
                   :elevation="hover ? 2 : 24"
                   class="btn-reset white--text"
                   @click="resetFilters"
-                >RESET FILTERS</v-btn>
+                  >RESET FILTERS</v-btn
+                >
               </v-hover>
             </div>
           </div>
@@ -76,7 +88,12 @@
         </v-flex>
       </template>
     </v-data-table>
-    <v-pagination v-if="this.tasks!=''" v-model="page" :length="pageCount" color="rgb(230,40,52)"></v-pagination>
+    <v-pagination
+      v-if="this.tasks != ''"
+      v-model="page"
+      :length="pageCount"
+      color="rgb(230,40,52)"
+    ></v-pagination>
   </div>
 </template>
 
@@ -106,63 +123,64 @@ export default {
           value: "name",
           sortable: false,
           filter: this.nameFilter,
-          align: "center"
+          align: "center",
         },
         {
           text: "Category",
           value: "category.name",
           align: "center",
           sortable: false,
-          filter: this.categoryFilter
+          filter: this.categoryFilter,
         },
         {
           text: "Campus",
           value: "campuslocation",
           align: "center",
           sortable: false,
-          filter: this.campusFilter
+          filter: this.campusFilter,
         },
         {
           text: "Classroom",
           value: "locationroom",
           align: "center",
           sortable: false,
-          filter: this.classroomFilter
+          filter: this.classroomFilter,
         },
         {
           text: "Status",
           value: "status",
           align: "center",
           sortable: false,
-          filter: this.statusFilter
-        }
-      ]
+          filter: this.statusFilter,
+        },
+      ],
     };
   },
   computed: {
     statuses() {
-      return this.tasks.map(d => d.status);
-    }
+      return this.tasks.map((d) => d.status);
+    },
   },
+
   mounted: function() {
     api
       .getCampusLocations()
-      .then(response => {
+      .then((response) => {
         this.campuses = response.data;
       })
-      .catch(error => {
+      .catch((error) => {
         this.errors.push(error);
       });
     api
       .getCategoryList()
-      .then(response => {
-        response.data.forEach(element => {
-          element.categoryList.forEach(category => {
+      .then((response) => {
+        response.data.forEach((element) => {
+          element.categoryList.forEach((category) => {
             this.categories.push(category);
           });
         });
       })
-      .catch(error => {
+      .catch((error) => {
         this.errors.push(error);
       });
     //TODO api call to add statusses in filters
@@ -212,10 +230,19 @@ export default {
         this.taskClassroomFilterVal = null;
       }
     },
+
+    resetFilters() {
+      this.taskCategoryFilterVal = null;
+      this.taskCampusFilterVal = null;
+      this.taskClassroomFilterVal = null;
+      this.taskStatusFilterVal = null;
+      this.selectedcampus = null;
+      this.classrooms = [];
+    },
     loadDetails(task) {
       this.$router.push({ path: `/task/${task.id}` });
-    }
-  }
+    },
+  },
 };
 </script>
 

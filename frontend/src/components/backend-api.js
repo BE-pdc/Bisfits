@@ -1,12 +1,12 @@
 import axios from "axios";
 
 const AXIOS = axios.create({
-  //baseURL: `//localhost:8080/api`,
-  baseURL: `//vps101.ap.be/api`,
+  baseURL: `//localhost:8080/api`,
+  // baseURL: `//vps101.ap.be/api`,
   timeout: 5000,
   headers: {
-    //"Access-Control-Allow-Origin": "http://localhost:8080",
-    "Access-Control-Allow-Origin": "http://vps101.ap.be",
+    "Access-Control-Allow-Origin": "http://localhost:8080",
+    // "Access-Control-Allow-Origin": "http://vps101.ap.be",
   },
 });
 
